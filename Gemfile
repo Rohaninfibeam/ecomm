@@ -11,7 +11,7 @@ gem 'sass-rails',   '~> 5.0.6'
 #gem 'actionpack-page_caching', '~> 1.0'
 gem "activemerchant", '~> 1.48'#, :lib => 'active_merchant'
 gem "american_date",  '~> 1.1.1'
-
+gem 'hirb', '~> 0.7.3'
 # Use https if you are pushing to HEROKU
 ##  NOTE: run the test before upgrading to the tagged version. It has had several deprecation warnings.
 # gem 'authlogic', '~> 3.4.6'#,          "~> 3.3.0"

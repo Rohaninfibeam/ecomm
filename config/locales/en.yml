@@ -38,6 +38,14 @@ en:
   meta_keywords:          'Ruby on Rails, ecommerce'
 
   label_create_shipment_button: 'Create Shipment'
+  number:
+     currency:
+        format:
+          unit: '₹'
+          delimiter: ','
+          separator: '.'
+          precision: 2
+          format: '%u%n'
 
   date:
     formats:

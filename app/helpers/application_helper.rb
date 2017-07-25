@@ -11,6 +11,10 @@ EXAMPLE USAGE!!
   <p><%= add_child_link "New Property", :properties %></p>
   <%= new_child_fields_template(form, :properties, :partial => '/admin/merchandise/add_property')%>
 =end
+  def number_to_currency(number, options = {})
+    options[:locale] ||= I18n.locale
+    super(number, options)
+  end
 
   def sortable(column, title = nil)
     title ||= column.titleize

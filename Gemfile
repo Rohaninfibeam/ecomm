@@ -17,7 +17,7 @@ gem 'hirb', '~> 0.7.3'
 # gem 'authlogic', '~> 3.4.6'#,          "~> 3.3.0"
 
 gem 'authlogic',   '~> 3.5.0'
-
+gem 'fabricjs-rails'
 #gem 'scrypt', '~> 2.0.0'
 
 gem "asset_sync",         '~> 1.2.1'

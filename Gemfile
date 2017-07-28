@@ -59,7 +59,6 @@ gem 'aasm',            '~> 4.0.3'
 #gem 'sunspot_rails',  '~> 2.0.0'
 gem 'will_paginate',   '~> 3.1.0'
 # gem 'zurb-foundation', '~> 4.3.2'
-gem 'foundation-rails', '6.2.3.0'
 
 group :production do
   # gem 'mysql2', '~> 0.4.4'

@@ -1,0 +1,35 @@
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'custom_products.css' %>
+<% end %>
+</br>
+<div class="input">
+  <div class="create-input">
+  	<label class="textlabel">Add Text</label>
+  	<textarea class="textinput"></textarea></br>
+    <input id="attachment" name="attachment" type="file" />
+    <img id="preview" src="#" alt="your image" type="hide" width="50px" height="50px" />
+  </div>
+  <div class="custom-shirt">
+    <canvas id="tutorial" width="500" height="500"></canvas>
+  <div>
+</div>
+<script type="text/javascript">
+	function readURL(input) {
+	    if (input.files && input.files[0]) {
+	        var reader = new FileReader();
+
+	        reader.onload = function (e) {
+	            $("#preview").attr('src', e.target.result);
+	        }
+
+	        reader.readAsDataURL(input.files[0]);
+	    }
+	    if(!$("#preview").is(":visible")){
+	    	$("#preview").toggle();
+	    }
+	}
+	$("#attachment").change(function(){
+    readURL(this);
+	});
+	
+</script>

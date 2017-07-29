@@ -8,10 +8,13 @@ Rails.application.config.assets.precompile += [ 'admin.css',
                                                 'admin/normalize.css',
                                                 'admin/help.css',
                                                 'admin/ie.css',
+                                                'custom_products.css',
                                                 'autocomplete.css',
                                                 'application.css',
                                                 'chosen.css',
                                                 'home_page.css',
+                                                'bootstrap.css',
+                                                'bootstrap-theme.css',
                                                 'ie.css',
                                                 'ie6.css',
                                                 'login.css',
@@ -27,9 +30,11 @@ Rails.application.config.assets.precompile += [ 'admin.css',
                                                 'signup.css',
                                                 'site/app.css',
                                                 'sprite.css',
+                                                'header.css',
                                                 'tables.css',
                                                 'cupertino/jquery-ui-1.8.12.custom.css',# in vendor
                                                 'modstyles.css', # in vendor
                                                 'scaffold.css', # in vendor
-                                                'vendor/modernizr.js'
+                                                'vendor/modernizr.js',
+                                                'bootstrap.js'
                                                 ]

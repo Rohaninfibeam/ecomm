@@ -55,9 +55,10 @@ gem 'rake', '~> 10.1'
 # gem "sprockets",       "4.0.0.beta2"
 gem "sprockets",       "~> 3.7.0"
 gem 'aasm',            '~> 4.0.3'
-#gem 'sunspot_solr',   '~> 2.0.0'
-#gem 'sunspot_rails',  '~> 2.0.0'
+gem 'sunspot_solr',   '~> 2.0.0'
+gem 'sunspot_rails',  '~> 2.1.1'
 gem 'will_paginate',   '~> 3.1.0'
+gem 'chewy'
 # gem 'zurb-foundation', '~> 4.3.2'
 
 group :production do

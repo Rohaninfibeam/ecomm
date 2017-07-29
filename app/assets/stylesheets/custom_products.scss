@@ -1,0 +1,30 @@
+// Place all the styles related to the CustomProducts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#tutorial{
+	background-image: url(custom_product/shirt.jpg);
+  position: relative;
+  left: 350px;
+}
+.create-input{
+	width: 40%;
+	display: inline-block;
+}
+.custom-shirt{
+	width: 50%;
+	display: inline-block;
+}
+.input{
+  display: inline-block;
+}
+.textlabel{
+  display: inline;
+  width:20%;
+}
+.textinput{
+  display: inline;
+  width:50%;
+}
+#preview{
+  display: none;
+}

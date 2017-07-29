@@ -30,6 +30,7 @@ class Product < ApplicationRecord
   include Presentation::ProductPresenter
   include ProductFilters
   #include ProductSolr # If you want to use SOLR search uncomment
+  update_index('products#product') { self }
 
   serialize :product_keywords, Array
 
@@ -217,6 +218,27 @@ class Product < ApplicationRecord
 
   def has_shipping_method?
     shipping_category.shipping_rates.exists?
+  end
+
+  def get_property_hash
+    property_hash = {}
+    active_variants.each do |v|
+      v.variant_properties.each do |vp|
+        if property_hash.key?(vp.property.display_name)
+          if property_hash[vp.property.display_name].key?(vp.description)
+            property_hash[vp.property.display_name][vp.description].push(vp.variant_id)
+          else
+            property_hash[vp.property.display_name][vp.description] = []
+            property_hash[vp.property.display_name][vp.description].push(vp.variant_id)
+          end
+        else
+          property_hash[vp.property.display_name] = {}
+          property_hash[vp.property.display_name][vp.description]=[]
+          property_hash[vp.property.display_name][vp.description].push(vp.variant_id)
+        end
+      end
+    end
+    property_hash
   end
 
   private

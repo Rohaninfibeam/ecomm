@@ -1,5 +1,9 @@
 Hadean::Application.routes.draw do
 
+  get 'custom_products/new'
+
+  get 'custom_products/edit'
+
   resources :image_groups
   # mount Resque::Server.new, at: "/resque"
 
@@ -16,7 +20,11 @@ Hadean::Application.routes.draw do
 
   resource  :about,         only: [:show]
   resources :notifications, only: [:update]
-  resources :products,      only: [:index, :show, :create]
+  resources :products,      only: [:index, :show, :create] do
+    collection do
+      get :zipcode_availability
+    end
+  end
   resources :states,        only: [:index]
   resources :terms,         only: [:index]
   resource  :unsubscribe,   only: :show

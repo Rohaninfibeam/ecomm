@@ -1,0 +1,23 @@
+.container.header{
+	height: 100px;
+}
+.container .top-bar{
+	height: 100px;
+}
+.container .top-bar .logo #logo{
+	height: 100px;
+}
+.container .top-bar .my-account-search{
+
+}
+.container .top-bar .my-account-search .search-cart{
+
+}
+.container .top-bar .my-account-search .my-account{
+	position: relative;
+	height: 25px;
+}
+.container .top-bar .my-account-search .my-account .dropdown{
+	position: absolute;
+	right: 0px;
+}

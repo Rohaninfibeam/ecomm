@@ -15,7 +15,11 @@
   <%= stylesheet_link_tag "normalize.css" %>
   <%= stylesheet_link_tag "application.css" %>
   <%= stylesheet_link_tag 'site/app.css' %>
-
+  <%= stylesheet_link_tag 'bootstrap.css' %>
+  <%= stylesheet_link_tag 'bootstrap-theme.css' %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'bootstrap' %>
+  <%= javascript_include_tag 'npm' %>
   <!--[if lt IE 8]
   <%= stylesheet_link_tag('ie.css', media: 'screen, projection')%>
   <![endif]-->
@@ -30,9 +34,9 @@
 
 </head>
 <body >
-<div id='body_wrapper'>
+<div id='body_wrapper container-fluid'>
 
-  <%= render partial: '/shared/welcome_header'%>
+  <%= render partial: '/shared/welcome_header_new'%>
 
   <% if notice || alert %>
       <div class="flash_notice callout <%= !!alert ? 'alert' : 'warning' %>" data-closable>
@@ -49,7 +53,7 @@
       </div>
   <% end %>
 
-    <div id='content_wrapper' class='row <%= "myaccount" if myaccount_tab %> '>
+    <div id='content_wrapper' class='container-fluid <%= "myaccount" if myaccount_tab %> '>
       <% if myaccount_tab %>
         <h1 style='text-align:center;'><%= site_name %></h1>
         <hr class="first_double_hr">
@@ -62,8 +66,6 @@
 </div>
   <%= render 'shared/main_footer' %>
   <%= render 'shared/google_analytics' unless @disable_ga %>
-
-  <%= javascript_include_tag 'application' %>
   <%= yield :bottom %>
 
   <script>

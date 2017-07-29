@@ -26,8 +26,19 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.friendly.active.find(params[:id])
+    @properties = @product.get_property_hash
     form_info
     @cart_item.variant_id = @product.active_variants.first.try(:id)
+    render 'show_new'
+  end
+
+  def zipcode_availability
+    pincode = Zipcode.find_by_pincode(params[:pincode])
+    if pincode.present?
+      render :json=>{:success=>true,:message=>"Ships to your area"}
+    else
+      render :json=>{:success=>false,:message=>"Doesn't ship to your area"}
+    end
   end
 
   private

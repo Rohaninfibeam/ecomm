@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  layout 'welcome'
+  # layout 'welcome'
 
   def index
     @featured_product = Product.featured

@@ -1,0 +1,220 @@
+
+<% content_for :head do -%>
+  <%= stylesheet_link_tag 'product_page.css' %>
+<% end %>
+<%= javascript_include_tag 'pdp.js' %>
+<div class="container">
+  <div class='row'>
+    <% if @product.active_variants.empty? %>
+      <div id='no-variant-available' class=' four large-4 last'>
+        Sorry this product is not currently available.
+      </div>
+    <% else %>
+
+      <div id='left_product_wrapper' class='col-md-6'>
+        <% @product.variants.each do |variant|%>
+          <% if variant.image_urls.size >= 1 %>
+            <div class="orbit" role="region" aria-label="<%=variant.name %>" data-orbit data-use-m-u-i="false" data-variant-id=<%=variant.id%>>
+              <ul class="orbit-container">
+                <button class="orbit-previous"><span class="show-for-sr">Previous</span>&#9664;&#xFE0E;</button>
+                <button class="orbit-next"><span class="show-for-sr">Next</span>&#9654;&#xFE0E;</button>
+                <% variant.image_urls(:large).each_with_index do |image, i|%>
+                  <li class="<%= 'is-active' if i == 0 %> orbit-slide">
+                    <%= image_tag(image,id:"large_image") %>
+                  </li>
+                <% end %>
+              </ul>
+              <nav class="orbit-bullets">
+                <% variant.image_urls.each_with_index do |image, i|%>
+                  <button class="<%= 'is-active' if i == 0 %>" data-slide="<%= i %>">
+                    <span data-slide="<%= i %>" class="show-for-sr"><%= i %></span>
+                    <% if i == 0 %>
+                      <span class="show-for-sr">Current Slide</span>
+                    <% end %>
+                  </button>
+                <% end %>
+              </nav>
+            </div>
+          <% elsif variant.images.size == 0 %>
+            <ul>
+              <li>
+                <a><%= image_tag(@product.featured_image(:large),id:"large_image") %></a>
+              </li>
+            </ul>
+          <% end %>
+        <% end %>
+
+      </div>
+      <div id='right_2_product_wrapper' class='col-md-6'>
+          <div id='right_product_wrapper' class=''>
+            <div class='product_title_name'>
+              <%= @product.name.split.map(&:capitalize).join(' ') %>
+            </div>
+            </br></br>
+            <div class="product-content row">
+              <div class="variant-select col-md-6">
+                <%@properties.each do |k,v|%>
+                  <label><%=k%></label>
+                  <% if k=="colour" || k == "color" %>
+                    <%v.each do |k,val|%>
+                      <%= image_tag(Variant.find(val[0]).image_urls(:mini)[0],id:"miniimage") %>
+                    <% end %>
+                  <% else %>
+                    <%=select_tag "variants", options_for_select(v)%>
+                  <% end %>
+                  </br>
+                  </br>
+                <% end %>
+                <div id="size-chart">
+                  <a data-toggle="modal" href="#sizechart">Size Chart</a>
+                </div>
+                </br>
+                <label style="width: 100%">Check for delivery Location</label>
+                <div>
+                  <%=form_tag '/zipcode_availabiltiy', method: :get do%>
+                    <input type="text" name="zipcode" id="pincode" maxlength="6"></input>
+                    <button id="check-zipcode">submit</button>
+                  <% end %>
+                </div>
+                </br>
+                <div id="pincode-message">
+                </div>
+                <div class="modal fade" id="sizechart" role="dialog">
+                  <div class="modal-dialog">
+                  
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Size Chart</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Some text in the modal.</p>
+                      </div>
+                    </div>
+                  </div>
+                <div>
+                </div>
+              </div>
+              <% if @product.active_variants.count > 0 %>
+                <div class="variant-detail col-md-6">
+                  <div class='product_content_price'>
+                    <%= number_to_currency @product.active_variants.first.price%>
+                  </div>
+                <div>
+              <% end %>
+            <div>
+              <!-- <div class='product_content'>
+                <div class='product_content_price'>
+                  <%= number_to_currency @product.active_variants.first.price%>
+                </div>
+
+              </div>
+              <div id='your_product' class='panel'>
+                <% @product.active_variants.each_with_index do |variant, i| %>
+                  <div id='variant_<%= variant.id %>'
+                       class='tiny button variant_select <%= 'secondary' if i != 0 %> <%= 'selected_variant success' if i == 0 %>'
+                       data-variant_id='<%= variant.id %>'>
+                    <%= raw variant.product_name %>
+                  </div>
+                <% end %>
+                  <div  class='properties_inner_wrapper ' >
+                    <hr/>
+                    <%= form_for  @cart_item,
+                                  :url  => shopping_cart_items_path(@cart_item),
+                                  :html => { :id => 'new_cart_item', :class => 'custom' } do |f| %>
+                        <%= f.hidden_field :variant_id %>
+                        <div class='four'>
+                        Quantity:
+                        <%= f.select :quantity, [1,2,3,4], { include_blank: false }, { class: ' ' } %>
+                        </div>
+                        <div class='add_to_cart_wrapper '>
+                          <% unless @product.active_variants.empty? %>
+                            <%= link_to 'Add to Cart', '#', id: 'submit_add_to_cart', class: 'small button' %>
+                          <% end %>
+                        </div>
+                    <% end %>
+                  </div>
+                  <div  class='clearfix' style='margin-bottom:20px;' >&nbsp;</div>
+              </div> -->
+
+              <!-- <ul id='product-tabs' class='tabs' data-tabs>
+                <li class="tabs-title is-active"><a href="#product-description" aria-selected="true">Product</a></li>
+                <li class="tabs-title"><a href="#product-properties">Properties</a></li>
+              </ul>
+              <div class="tabs-content" data-tabs-content="product-tabs">
+                <div class="tabs-panel is-active" id="product-description">
+                  <% @product.active_variants.each_with_index do |variant, i| %>
+                    <% if variant.low_stock? || variant.sold_out? %>
+                      <div  class='variant_stock variant_stock_<%= variant.id %> <%= 'is-hidden' if i != 0 %>'>
+                        <%= image_tag("ribbons/#{variant.stock_status}_upper_right.png",
+                                      :width => 63, :height => 62,
+                                      :style => 'border:none;',
+                                      :class => 'upper_right_overlay float-right'
+                                       ) %>
+                        <% if variant.sold_out? && (!current_user || !current_user.requested_to_be_notified?(variant.id)) %>
+                          <p>
+                          <% if current_user %>
+                            <%= link_to 'Notify me', notification_path(variant), data: { confirm: 'Click OK and you will get an email when this product is back in stock.' }, class: 'button tiny alert', style: 'margin-top:15px;', method: :put %> when this product is back in stock.
+                          <% else %>
+                            <%= link_to 'Notify me', '#', disabled: true, class: 'button tiny disabled', style: 'margin-top:15px;' %><br/>
+                            Login to be notified when this product is back in stock.
+                          <% end %>
+                          </p>
+                        <% elsif variant.sold_out? && (current_user && current_user.requested_to_be_notified?(variant.id)) %>
+                          <p class='alert callout'><em>You will be notified when this product is back in stock.</em></p>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                  <div><%= raw @product.description %></div>
+                </div>
+                <div class="tabs-panel" id="product-properties">
+                  <% @product.active_variants.each_with_index do |var, i| %>
+                    <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'is-hidden' if i != 0 %>'>
+                      <% if var.low_stock? || var.sold_out? %>
+                        <div class='variant_stock variant_stock_<%= var.id %> <%= 'is-hidden' if i != 0 %>'>
+                          <%= image_tag("ribbons/#{var.stock_status}_upper_right.png",
+                                        :width => 63, :height => 62,
+                                        :style => 'border:none;',
+                                        :class => 'upper_right_overlay float-right'
+                                         ) %>
+                        </div>
+                      <% end %>
+                      <ul class='vertical-list'>
+                        <% var.variant_properties.each do |prop| %>
+                          <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
+                        <% end %>
+
+                          <% if var.sold_out? && (!current_user || !current_user.requested_to_be_notified?(var.id)) %>
+                            <li>
+                            <% if current_user %>
+                              <%= link_to 'Notify me', notification_path(var), data: { confirm: 'Click OK and you will get an email when this product is back in stock.' }, class: 'button tiny alert', style: 'margin-top:15px;', method: :put %> when this product is back in stock.
+                            <% else %>
+                              <%= link_to 'Notify me', '#', disabled: true, class: 'button tiny', style: 'margin-top:15px;' %><br/>
+                              Login to be notified when this product is back in stock.
+                            <% end %>
+                            </li>
+                          <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                </div>
+              </div> -->
+
+            </div>
+          </div>
+      </div>
+
+    <% end %>
+  </div>
+
+</div>
+&nbsp;<div class='clearfix' style='height:50px;'>&nbsp</div>
+</div>
+<div id='generic-dialog'></div>
+
+<% content_for :below_body do -%>
+  <%= javascript_include_tag 'shopping/cart.js' %>
+  <%= javascript_include_tag 'product_page.js' %>
+<% end %>

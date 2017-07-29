@@ -4,4 +4,3 @@
 //= require_tree  ./jquery
 //= require_tree  ./layout
 //= require fabric
-$(function(){ $(document).foundation(); });

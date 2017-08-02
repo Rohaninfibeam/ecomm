@@ -23,6 +23,7 @@ Hadean::Application.routes.draw do
   resources :products,      only: [:index, :show, :create] do
     collection do
       get :zipcode_availability
+      get :search
     end
   end
   resources :states,        only: [:index]

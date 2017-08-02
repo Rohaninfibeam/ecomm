@@ -101,6 +101,12 @@ class Product < ApplicationRecord
     end
   end
 
+  def image_large_zoom
+    Rails.cache.fetch("Product-image_urls-#{id}-large_zoom", expires_in: 3.hours) do
+      images.empty? ? ["no_image_large.jpg"] : images.map{|i| {"large"=>i.photo.url(:large),"zoom"=>i.photo.url(:zoom) }}
+    end
+  end
+
   # Price of cheapest variant
   #
   # @param [none] the size of the image expected back
@@ -163,7 +169,7 @@ class Product < ApplicationRecord
   # @return [ Product ]
   def self.featured
     product = where({ products: { featured: true} } ).includes(:images).first
-    product ? product : includes(:images).where(['products.deleted_at IS NULL']).first
+    product ? product : includes(:images).where(['products.deleted_at IS NULL'])
   end
 
   def self.active

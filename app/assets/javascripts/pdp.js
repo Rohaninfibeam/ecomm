@@ -15,4 +15,22 @@ $(function(){
      		}
 		})
 	});
+
+	$(".container .product-image .product-image-large").slick({
+		asNavFor:'.product-image-mini'
+	});
+	$(".container .product-image .product-image-mini").slick({
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		asNavFor: '.product-image-large',
+		centerMode: true,
+		focusOnSelect: true
+	});
+	$(".container .product-image .product-image-mini").on('mouseenter', '.slick-slide', function (e) {
+		var $currTarget = $(e.currentTarget), 
+    	index = $currTarget.data('slick-index'),
+        slickObj = $('.container .product-image .product-image-large').slick('getSlick');
+   		slickObj.slickGoTo(index);
+	});
+	$(".large_image").magnify();
 })

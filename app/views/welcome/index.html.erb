@@ -1,13 +1,48 @@
 <% content_for :head do -%>
   <%= stylesheet_link_tag 'home_page.css' %>
+  <%= javascript_include_tag 'slick' %>
+  <%= javascript_include_tag 'home_page' %>
 <% end %>
-
-
-<div id='left_side_panel' class='span-6 last'>
-&nbsp;
+<div class="row space">
+</div>
+<div class="row banner-custom">
+	<div class="col-sm-9 col-md-9 banner">
+		<div class="banner-slick">
+			<div>
+				<%=link_to(image_tag("banner/banner_image1.jpg",class: "banner"),"#")%>
+			</div>
+			<div>
+				<%=link_to(image_tag("banner/banner_image2.jpg",class: "banner"),"#")%>
+			</div>
+			<div>
+				<%=link_to(image_tag("banner/banner_image3.jpg",class: "banner"),"#")%>
+			</div>
+			<div>
+				<%=link_to(image_tag("banner/banner_image4.jpg",class: "banner"),"#")%>
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-3 col-md-3 custom">
+		
+	</div>
 </div>
 
-<div id='featured_item' class='span-18 last'>
-  <%= image_tag 'home.png' %>
+<div class="row featured-product">
+	<div class="container">
+		<div class="row heading">
+			<h3>Featured Product</h3>
+		</div>
+		<div class="row product">
+			<%@featured_product.each do |fp|%>
+				<div>
+					<div>
+						<%=link_to(image_tag(fp.image_urls[0],class: "featured-product"), product_path(fp))%>
+					</div>
+					<div class="name">
+						<%=fp.name.present? ? fp.name.split.map(&:capitalize).join(' ') : "Tshirt"%>
+					</div>
+				</div>
+			<% end -%>
+		</div>
+	</div>
 </div>
-

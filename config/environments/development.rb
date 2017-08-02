@@ -78,7 +78,8 @@ Hadean::Application.configure do
                                           :small    => '100x100>',
                                           :medium   => '200x200>',
                                           :product  => '320x320>',
-                                          :large    => '600x600>' },
+                                          :large    => '600x600>',
+                                          :zoom     => '1000x1000' },
                               :default_style => :product,
                               :url => "/assets/products/:id/:style/:basename.:extension",
                               :path => ":rails_root/public/assets/products/:id/:style/:basename.:extension" }

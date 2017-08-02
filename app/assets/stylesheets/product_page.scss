@@ -216,3 +216,77 @@ $error_background         : #FBE3E4;
     text-align:center;
   }
 }
+
+.container{
+  #right_2_product_wrapper{
+    padding-top: 25px;
+    #right_product_wrapper{
+      .product_title_name{
+        text-align: center;
+        font-weight: bold;
+        font-size: medium;
+      }
+      .product-content{
+        .variant-detail{
+          .add-to-cart{
+            top: 178px;
+            position: absolute;
+            left: 25%;
+            width: 136px;
+            height: 42px;
+            background: green;
+            text-align: center;
+            font-size: 22px;
+            #submit_add_to_cart{
+              color: white;
+              font-weight: bold;
+            }
+          }
+          .variant-price{
+              text-align: center;
+              font-size: 28px;
+              font-weight: bold;
+              background-color: green;
+              color: white;
+              width: 62%;
+              margin-left: 57px;
+              position: absolute;
+              top: 0px;
+          }
+          .has-stock{
+            position: absolute;
+            top: 130px;
+            left: 27%;
+          }
+          .quantity{
+            text-align: center;
+            padding-top: 25px;
+            position: absolute;
+            top: 50px;
+            left: 25%;
+            .quantity-value{
+              text-align: center;
+            }
+            .quantity-plus, .quantity-minus{
+              border: 1px solid black;
+              width: 50px;
+              display: inline-block;
+              height: 25px;
+              text-align: center;
+            }
+          }
+        }
+        .variant-select{
+          .properties{
+            img.selected{
+              border: 1px solid green;
+            }
+          }
+        }
+      }
+    }
+  }
+  #product-image{
+    padding-top: 25px;
+  }
+}

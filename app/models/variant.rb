@@ -80,6 +80,12 @@ class Variant < ApplicationRecord
     end
   end
 
+  def image_large_zoom
+    Rails.cache.fetch("variant-image_urls-#{self}-large_small", :expires_in => 3.hours) do
+      image_group ? image_group.image_large_zoom : product.image_large_zoom
+    end
+  end
+
   def active?
     deleted_at.nil? || deleted_at > Time.zone.now
   end

@@ -15,8 +15,11 @@
   <%= stylesheet_link_tag "normalize.css" %>
   <%= stylesheet_link_tag "application.css" %>
   <%= stylesheet_link_tag 'site/app.css' %>
+  <%= stylesheet_link_tag 'slick.css' %>
+  <%= stylesheet_link_tag 'slick-theme.css' %>
   <%= stylesheet_link_tag 'bootstrap.css' %>
   <%= stylesheet_link_tag 'bootstrap-theme.css' %>
+  <%= javascript_include_tag 'jquery-3.2.1.min' %>
   <%= javascript_include_tag 'application' %>
   <%= javascript_include_tag 'bootstrap' %>
   <%= javascript_include_tag 'npm' %>
@@ -53,7 +56,7 @@
       </div>
   <% end %>
 
-    <div id='content_wrapper' class='container-fluid <%= "myaccount" if myaccount_tab %> '>
+    <div id='content_wrapper' class='container <%= "myaccount" if myaccount_tab %> '>
       <% if myaccount_tab %>
         <h1 style='text-align:center;'><%= site_name %></h1>
         <hr class="first_double_hr">

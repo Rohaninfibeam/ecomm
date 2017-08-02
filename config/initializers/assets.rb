@@ -2,6 +2,7 @@
 Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf )
 Rails.application.config.assets.precompile += %w( *.js )
 Rails.application.config.assets.precompile += [ 'admin.css',
+                                                'jquery-3.2.1.min.js',
                                                 'admin/app.css',
                                                 'admin/cart.css',
                                                 'admin/foundation.css',
@@ -28,9 +29,12 @@ Rails.application.config.assets.precompile += [ 'admin.css',
                                                 'products_page.css',
                                                 'shopping_cart_page.css',
                                                 'signup.css',
+                                                'magnify.css',
                                                 'site/app.css',
                                                 'sprite.css',
                                                 'header.css',
+                                                'slick.css',
+                                                'slick-theme.css',
                                                 'tables.css',
                                                 'cupertino/jquery-ui-1.8.12.custom.css',# in vendor
                                                 'modstyles.css', # in vendor

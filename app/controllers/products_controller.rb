@@ -1,5 +1,9 @@
 class ProductsController < ApplicationController
 
+  def search
+  
+  end
+
   def index
     products = Product.active.includes(:variants)
 

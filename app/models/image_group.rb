@@ -29,6 +29,12 @@ class ImageGroup < ApplicationRecord
     end
   end
 
+  def image_large_zoom
+    Rails.cache.fetch("ImageGroup-image_urls-#{id}-large_small", :expires_in => 3.hours) do
+      images.empty? ? product.image_large_zoom : images.map{|i| {"large"=>i.photo.url(:large),"zoom"=>i.photo.url(:zoom)}}
+    end
+  end
+
   private
     def expire_cache
       PAPERCLIP_STORAGE_OPTS[:styles].each_pair do |image_size, value|
